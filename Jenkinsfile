@@ -30,7 +30,7 @@ pipeline {
       steps {
         sshagent (credentials: ["${SSH_CREDENTIALS}"]) {
           sh """
-          ssh -o StrictHostKeyChecking=no ec2-user@${EC2_HOST} '
+          ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} '
             docker stop monapp || true
             docker rm monapp || true
             docker run -d -p 80:80 --name monapp ${IMAGE_NAME}
