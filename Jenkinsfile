@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Clone code') {
       steps {
-        git url: 'https://github.com/<ton-user>/mon-app.git'
+        git url: 'https://github.com/ruben-cardoso1/testDockerfile.git'
       }
     }
 
