@@ -13,7 +13,11 @@ pipeline {
         git url: 'https://github.com/ruben-cardoso1/testDockerfile.git'
       }
     }
-
+  stage('Check Docker Access') {
+    steps {
+      sh 'whoami && docker ps'
+    }
+  }
     stage('Build Docker Image') {
       steps {
         script {
