@@ -25,21 +25,27 @@ pipeline {
   }
     stage('Build Docker Image') {
       steps {
-        script {
-          sh 'docker build -t "${IMAGE_NAME}" .'
-        }
+        sh 'docker build -t ec2-nginx-app:latest .'
       }
     }
 
-    stage('Deploy on EC2') {
+    stage('Export Docker Image') {
+      steps {
+        sh 'docker save -o image.tar ec2-nginx-app:latest'
+      }
+    }
+
+    stage('Transfer and Deploy on EC2') {
       steps {
         sshagent (credentials: ["${SSH_CREDENTIALS}"]) {
           sh """
-          ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} '
-            docker stop monapp || true
-            docker rm monapp || true
-            docker run -d -p 80:80 --name monapp ${IMAGE_NAME}
-          '
+            scp -o StrictHostKeyChecking=no image.tar ubuntu@${EC2_HOST}:/tmp/
+            ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} '
+              docker load -i /tmp/image.tar
+              docker stop monapp || true
+              docker rm monapp || true
+              docker run -d -p 80:80 --name monapp ec2-nginx-app:latest
+            '
           """
         }
       }
