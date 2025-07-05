@@ -18,14 +18,6 @@ pipeline {
       sh 'whoami'
     }
   }
-    stage('install Docker into container') {
-    steps {
-      sh 'apt update -y'
-      sh 'apt install docker.io -y'
-      sh 'systemctl start docker'
-      sh 'usermod -aG docker jenkins'
-    }
-  }
     stage('Check Docker running') {
     steps {
       sh 'docker ps'
