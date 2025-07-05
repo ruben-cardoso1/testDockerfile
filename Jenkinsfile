@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    EC2_HOST = '3.26.26.197'      
+    EC2_HOST = '54.255.211.203'      
     SSH_CREDENTIALS = 'ec2_jenkins'
     IMAGE_NAME = 'ec2-nginx-app:latest'
   }
