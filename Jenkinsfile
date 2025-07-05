@@ -15,7 +15,7 @@ pipeline {
     }
   stage('Check Docker Access') {
     steps {
-      sh 'whoami && docker ps'
+      sh 'whoami'
     }
   }
     stage('install Docker into container') {
