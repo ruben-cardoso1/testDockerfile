@@ -26,7 +26,7 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         script {
-          docker.build("${IMAGE_NAME}")
+          sh 'docker build -t "${IMAGE_NAME}" .'
         }
       }
     }
