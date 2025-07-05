@@ -26,6 +26,11 @@ pipeline {
       sh 'sudo usermod -aG docker jenkins'
     }
   }
+    stage('Check Docker running') {
+    steps {
+      sh 'docker ps'
+    }
+  }
     stage('Build Docker Image') {
       steps {
         script {
