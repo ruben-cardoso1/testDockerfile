@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     EC2_HOST = '3.26.26.197'      
-    SSH_CREDENTIALS = '6773bb83-950f-46e9-a35a-8eb08fa1e20f'
+    SSH_CREDENTIALS = 'ec2_jenkins'
     IMAGE_NAME = 'ec2-nginx-app:latest'
   }
 
