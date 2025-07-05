@@ -20,10 +20,10 @@ pipeline {
   }
     stage('install Docker into container') {
     steps {
-      sh 'sudo apt update -y'
-      sh 'sudo apt install docker.io -y'
-      sh 'sudo systemctl start docker'
-      sh 'sudo usermod -aG docker jenkins'
+      sh 'apt update -y'
+      sh 'apt install docker.io -y'
+      sh 'systemctl start docker'
+      sh 'usermod -aG docker jenkins'
     }
   }
     stage('Check Docker running') {
