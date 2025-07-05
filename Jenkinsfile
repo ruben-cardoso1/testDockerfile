@@ -23,7 +23,7 @@ pipeline {
       sh 'sudo apt update -y'
       sh 'sudo apt install docker.io -y'
       sh 'sudo systemctl start docker'
-      sh sudo usermod -aG docker jenkins'
+      sh 'sudo usermod -aG docker jenkins'
     }
   }
     stage('Build Docker Image') {
