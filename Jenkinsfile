@@ -18,6 +18,14 @@ pipeline {
       sh 'whoami && docker ps'
     }
   }
+    stage('install Docker into container') {
+    steps {
+      sh 'sudo apt update -y'
+      sh 'sudo apt install docker.io -y'
+      sh 'sudo systemctl start docker'
+      sh sudo usermod -aG docker jenkins'
+    }
+  }
     stage('Build Docker Image') {
       steps {
         script {
